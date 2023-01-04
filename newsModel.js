@@ -5,6 +5,7 @@ class NewsModel {
 
   setNewsData(newsData) {
     this.newsData = newsData;
+    return newsData;
   }
 
   getNewsData() {
