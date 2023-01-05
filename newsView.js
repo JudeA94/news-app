@@ -37,6 +37,7 @@ class NewsView {
   }
 
   clearPage() {
+    const query = document.querySelector('#search-query').value = null
     const newsEls = this.mainContainerEl.querySelectorAll('#items')
     newsEls.forEach(newsEl => newsEl.remove())
   }
