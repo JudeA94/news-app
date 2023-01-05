@@ -2,12 +2,21 @@ class NewsView {
   constructor(model, client) {
     this.model = model;
     this.client = client;
-    this.mainContainerEl = document.querySelector('#main-container');  
+    this.mainContainerEl = document.querySelector('#main-container');
+    const searchForm = document.querySelector('.search-bar');
+    searchForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const search = document.querySelector('#search-query').value
+      this.display(search);
+    });
   }
 
-  display() {
-    this.client.getNewsData((data) => this.model.setNewsData(data)).then((result) => {
-      this.createElements()})
+  display(search) {
+    this.clearPage()
+    console.log(search)
+    this.client.getNewsData(search, (data) => this.model.setNewsData(data)).then((result) => {
+      this.createElements();
+    });
   }
 
   createElements() {
@@ -23,21 +32,14 @@ class NewsView {
       urlA.href = newsData.webUrl
       urlA.innerText = 'View this article'
       newsEl.append(img,newsP,urlA)
-      
       this.mainContainerEl.append(newsEl)
-    }
+    })
+  }
 
-    
-    )
+  clearPage() {
+    const newsEls = this.mainContainerEl.querySelectorAll('#items')
+    newsEls.forEach(newsEl => newsEl.remove())
   }
 }
 
 module.exports = NewsView;
-
-
-// {"response":
-//   {"status":"ok","userTier":"developer","total":1,"content":
-//     {"id":"books/2023/jan/03/sugar-street-by-jonathan-dee-review-on-the-run-and-off-the-grid","type":"article","sectionId":"books","sectionName":"Books","webPublicationDate":"2023-01-03T07:00:37Z","webTitle":"Sugar Street by Jonathan Dee review – on the run and off the grid","webUrl":"https://www.theguardian.com/books/2023/jan/03/sugar-street-by-jonathan-dee-review-on-the-run-and-off-the-grid","apiUrl":"https://content.guardianapis.com/books/2023/jan/03/sugar-street-by-jonathan-dee-review-on-the-run-and-off-the-grid","isHosted":false,"pillarId":"pillar/arts","pillarName":"Arts"}}}
-
-
-//     .response.content.webTitle
