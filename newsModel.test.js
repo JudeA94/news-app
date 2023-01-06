@@ -5,6 +5,4 @@ describe('NewsModel', () => {
     const model = new NewsModel();
     expect(model.getNewsData()).toEqual(null);
   })
-
-  
 })

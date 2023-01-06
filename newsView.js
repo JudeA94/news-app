@@ -13,10 +13,10 @@ class NewsView {
 
   display(search) {
     this.clearPage()
-    console.log(search)
-    this.client.getNewsData(search, (data) => this.model.setNewsData(data)).then((result) => {
-      this.createElements();
-    });
+    this.client.getNewsData(search, (data) => {
+      this.model.setNewsData(data)
+      this.createElements()
+    })
   }
 
   createElements() {
