@@ -23,4 +23,4 @@ HTML
 CSS
 
 ## Screenshot
-![screenshot of homepage](./Screenshot 2023-02-13 at 14.35.58.png)
+![screenshot of homepage](./homepage.png)
