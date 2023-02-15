@@ -1,4 +1,4 @@
-const apiKey = require("./apiKey");
+const apiKey = process.env.API_KEY
 
 class NewsClient {
   getNewsData(search='', callback) {
